@@ -27,7 +27,7 @@ export function Header() {
             Sobre
           </a>
           <a
-            href="https://instagram.com/euquefiz"
+            href="https://instagram.com/euquefizshoes"
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground hover:bg-secondary/80 transition-colors"
