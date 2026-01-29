@@ -405,7 +405,7 @@ export default function Home() {
             product={selectedProduct}
             isOpen={!!selectedProduct}
             onClose={() => setSelectedProduct(null)}
-            size="lg"
+            size="sm"
           />
         )}
       </AnimatePresence>

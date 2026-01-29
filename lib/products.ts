@@ -356,7 +356,7 @@ export const products: Product[] = [
     "Conforto e estilo"
   ],
   colors: [
-    { name: "Animal-Print", hex: "#b96826ff", media: [{ type: "image", src: "/public/images/rasteira-diana/h-ap.png", alt: "Rasteira Girassol prata" }, { type: "image", src: "/public/images/rasteira-diana/v-ap.png", alt: "Rasteira Girassol prata" } ] },
+    { name: "Animal-Print", hex: "#b96826ff", media: [{ type: "image", src: "/images/rasteira-diana/h-ap.png", alt: "Rasteira Girassol prata" }, { type: "image", src: "/images/rasteira-diana/v-ap.png", alt: "Rasteira Girassol prata" } ] },
     // { name: "Dourado", hex: "#D4AF37", media: [{ type: "image", src: "", alt: "Rasteira Girassol dourada" }] }
   ],
   sizes: [34, 35, 36, 37, 38, 39]
@@ -412,4 +412,23 @@ export const products: Product[] = [
   ],
   sizes: [34, 35, 36, 37, 38, 39]
 },
+
+{
+  id: "20",
+  name: "Flatform Dominique",
+  price: 119.90,
+  description: [
+    "Conforto, estilo e praticidade",
+    "Tiras cruzadas com aplicação de pirâmides douradas",
+    "Solado em PVC emborrachado",
+    "Altura de 2,5cm",
+    "Material sintético"
+  ],
+  colors: [
+    { name: "Preta", hex: "#1C1C1C", media: [{ type: "image", src: "", alt: "Flatform Dominique preta" }] },
+    { name: "Caramelo", hex: "#B87333", media: [{ type: "image", src: "", alt: "Flatform Dominique caramelo" }] }
+  ],
+  sizes: [34, 35, 36, 37, 38, 39]
+},
+
 ]

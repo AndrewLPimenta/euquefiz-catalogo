@@ -56,7 +56,7 @@ export function ProductModal({ product, isOpen, onClose, size = "lg" }: ProductM
         return cn(
           baseClasses,
           "max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl", // Mobile: full, depois cresce
-          "max-h-[90vh] sm:max-h-[50vh]"
+          "max-h-[80vh] sm:max-h-[80vh]"
         )
       case "md":
         return cn(
