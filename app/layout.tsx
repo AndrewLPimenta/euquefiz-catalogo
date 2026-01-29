@@ -1,16 +1,22 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import {  Inter } from 'next/font/google'
+import { Montserrat } from "next/font/google"
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-serif' });
+const _montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: '--font-serif',
+  // weight: ['400'], 
+  display: 'swap',
+})
+
 const _inter = Inter({ subsets: ["latin"], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: 'euquefiz | Sandálias Artesanais',
   description: 'Sandálias femininas feitas à mão com amor e dedicação',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
@@ -18,7 +24,7 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/icon-light-32x32.png',
         media: '(prefers-color-scheme: dark)',
       },
       {
