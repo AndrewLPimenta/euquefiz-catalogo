@@ -235,8 +235,8 @@ export function ProductCarousel({
                   "w-14 h-14 rounded-lg overflow-hidden border-2 transition",
                   isValid
                     ? isActive
-                      ? "border-primary scale-100"
-                      : "border-transparent opacity-70 hover:opacity-100 hover:scale-105"
+                      ? "border- scale-100"
+                      : "border- opacity-70 "
                     : "border-transparent opacity-40 cursor-not-allowed relative"
                 )}
                 disabled={!isValid}

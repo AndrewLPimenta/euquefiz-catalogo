@@ -81,27 +81,69 @@ export default function Home() {
             Conforto, estilo e autenticidade em cada passo da sua jornada.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.button
-              onClick={() => scrollToSection("catalogo")}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold shadow-lg hover:shadow-primary/30 transition-all"
-            >
-              Explorar Coleção
-              <ChevronDown className="w-5 h-5" />
-            </motion.button>
+<div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+  <motion.button
+    type="button"
+    onClick={() => scrollToSection("catalogo")}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.96 }}
+    className="
+      inline-flex
+      w-full sm:w-auto
+      items-center
+      justify-center
+      gap-3
+      px-8
+      py-4
+      rounded-full
+      bg-gradient-to-r
+      from-primary
+      to-accent
+      text-white
+      font-semibold
+      shadow-lg
+      hover:shadow-primary/30
+      transition-all
+      cursor-pointer
+      pointer-events-auto
+    "
+  >
+    <span className="flex items-center gap-3 pointer-events-none">
+      Explorar Coleção
+      <ChevronDown className="w-5 h-5" />
+    </span>
+  </motion.button>
 
-            <motion.button
-              onClick={() => scrollToSection("sobre")}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-primary/20 font-semibold hover:bg-primary/5 transition-all"
-            >
-              <Sparkles className="w-5 h-5" />
-              Nossa História
-            </motion.button>
-          </div>
+  <motion.button
+    type="button"
+    onClick={() => scrollToSection("sobre")}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.96 }}
+    className="
+      inline-flex
+      w-full sm:w-auto
+      items-center
+      justify-center
+      gap-3
+      px-8
+      py-4
+      rounded-full
+      border-2
+      border-primary/20
+      font-semibold
+      hover:bg-primary/5
+      transition-all
+      cursor-pointer
+      pointer-events-auto
+    "
+  >
+    <span className="flex items-center gap-3 pointer-events-none">
+      Nossa História
+      <Sparkles className="w-5 h-5" />
+    </span>
+  </motion.button>
+</div>
+
         </motion.div>
 
         {/* Floating Elements */}
