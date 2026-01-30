@@ -1,49 +1,46 @@
 import React from "react"
-import type { Metadata } from 'next'
-import {  Inter } from 'next/font/google'
-import { Montserrat } from "next/font/google"
-import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import type { Metadata } from "next"
+import { Inter, Montserrat } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import "./globals.css"
 
-const _montserrat = Montserrat({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: '--font-serif',
-  // weight: ['400'], 
-  display: 'swap',
+  variable: "--font-serif",
+  display: "swap",
 })
 
-const _inter = Inter({ subsets: ["latin"], variable: '--font-sans' });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: 'euquefiz | Sandálias Artesanais',
-  description: 'Sandálias femininas feitas à mão com amor e dedicação',
+  title: "euquefiz | Sandálias Artesanais",
+  description: "Sandálias femininas feitas à mão com amor e dedicação",
   icons: {
     icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
+      { url: "/favicon.ico" },
+      { url: "/icon-light-32x32.png", type: "image/png" },
     ],
-    apple: '/apple-icon.png',
+    apple: "/apple-touch-icon.png",
   },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`font-sans antialiased`}>
+    <html lang="pt-BR" className={`${inter.variable} ${montserrat.variable}`}>
+      <head>
+        {/* Safari lê ISSO, não confie só no metadata */}
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </head>
+      <body className="font-sans antialiased">
         {children}
         <Analytics />
       </body>
