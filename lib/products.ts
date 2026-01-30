@@ -234,8 +234,8 @@ export const products: Product[] = [
     "Material sintético"
   ],
   colors: [
-    { name: "Prata", hex: "#C0C0C0", media: [{ type: "image", src: "/images/rasteira-magnolia/h-dourado.png", alt: "Rasteira Magnólia prata" }, { type: "image", src: "/images/rasteira-magnolia/v-dourado.png", alt: "Rasteira Magnólia prata" }] },
-    { name: "Dourado", hex: "#D4AF37", media: [{ type: "image", src: "", alt: "Rasteira Magnólia dourada" }] }
+    { name: "Dourado", hex: "#D4AF37", media: [{ type: "image", src: "/images/rasteira-magnolia/h-dourado.png", alt: "Rasteira Magnólia prata" }, { type: "image", src: "/images/rasteira-magnolia/v-dourado.png", alt: "Rasteira Magnólia prata" }] },
+    // { name: "Dourado", hex: "#D4AF37", media: [{ type: "image", src: "", alt: "Rasteira Magnólia dourada" }] }
   ],
   sizes: [34, 35, 36, 37, 38, 39]
 },
@@ -270,7 +270,7 @@ export const products: Product[] = [
   ],
   colors: [
     { name: "Dourado", hex: "#D4AF37", media: [{ type: "image", src: "/images/rasteira-noar/h-dourado.png", alt: "Rasteira Noar dourada" }, { type: "image", src: "/images/rasteira-noar/v-dourado.png", alt: "Rasteira Noar dourada" }] },
-    { name: "Prata", hex: "#C0C0C0", media: [{ type: "image", src: "/images/rasteira-noar/h-prata.png", alt: "Rasteira Noar dourada" }, { type: "image", src: "/", alt: "Rasteira Noar dourada" }] },
+    { name: "Prata", hex: "#C0C0C0", media: [{ type: "image", src: "", alt: "Rasteira Noar dourada" }, { type: "image", src: "", alt: "Rasteira Noar dourada" }] },
 
   ],
   sizes: [34, 35, 36, 37, 38, 39]
@@ -288,7 +288,7 @@ export const products: Product[] = [
   ],
   colors: [
     { name: "Caramelo", hex: "#B87333", media: [{ type: "image", src: "/images/rasteira-isa/h-caramelo.png", alt: "Rasteira Girassol prata" }, { type: "image", src: "/images/rasteira-isa/v-caramelo.png", alt: "Rasteira Isa prata" }] },
-    { name: "Preta", hex: "#1C1C1C", media: [{ type: "image", src: "/images/rasteira-isa/h-caramelo.png", alt: "Rasteira Girassol prata" }, { type: "image", src: "/images/rasteira-isa/v-caramelo.png", alt: "Rasteira Isa prata" }]}
+    { name: "Preta", hex: "#1C1C1C", media: [{ type: "image", src: "", alt: "Rasteira Girassol prata" }, { type: "image", src: "", alt: "Rasteira Isa prata" }]}
   ],
   sizes: [34, 35, 36, 37, 38, 39]
 },
@@ -414,7 +414,7 @@ export const products: Product[] = [
 },
 
 {
-  id: "20",
+  id: "29",
   name: "Flatform Dominique",
   price: 119.90,
   description: [

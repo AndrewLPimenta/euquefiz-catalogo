@@ -260,17 +260,17 @@ export function ProductModal({ product, isOpen, onClose, size = "lg" }: ProductM
           <div className="sticky top-0 z-20 flex justify-between items-center p-2 sm:p-3 md:p-4 bg-card/90 backdrop-blur-sm border-b border-border/50">
             <button
               onClick={() => setIsLiked(!isLiked)}
-              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors hover:scale-110 border border-border/50"
+            //   className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors hover:scale-110 border border-border/50"
               aria-label={isLiked ? "Remover dos favoritos" : "Adicionar aos favoritos"}
             >
-              <Heart 
+              {/* <Heart 
                 className={cn(
                   "w-4 h-4 sm:w-5 sm:h-5 transition-all",
                   isLiked 
                     ? "fill-red-500 text-red-500 scale-110" 
                     : "text-muted-foreground hover:text-foreground"
                 )} 
-              />
+              /> */}
             </button>
 
             <button
@@ -482,7 +482,7 @@ export function ProductModal({ product, isOpen, onClose, size = "lg" }: ProductM
                 </div>
 
                 {/* Features */}
-                <div className="mb-4 sm:mb-6 md:mb-8 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-br from-secondary/10 to-transparent border border-border">
+                {/* <div className="mb-4 sm:mb-6 md:mb-8 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-br from-secondary/10 to-transparent border border-border">
   <h3 className="font-semibold text-foreground mb-2 sm:mb-3 md:mb-4">Lorem Ipsum Features</h3>
   
   <div className="mb-3 sm:mb-4 md:mb-6">
@@ -537,7 +537,7 @@ export function ProductModal({ product, isOpen, onClose, size = "lg" }: ProductM
     <p>• Quis autem vel eum iure reprehenderit qui in ea voluptate</p>
     <p>• Velit esse quam nihil molestiae consequatur</p>
   </div>
-</div>
+</div> */}
 
                 {/* Botões de Ação */}
                 <div className="space-y-2 sm:space-y-3 md:space-y-4">

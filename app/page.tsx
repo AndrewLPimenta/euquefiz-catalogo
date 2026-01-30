@@ -9,32 +9,27 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ProductModal } from "@/components/product-modal"
 import { FaWhatsapp } from "react-icons/fa"
+import { StarIcon } from "lucide-react"
+import { Phone } from "lucide-react"
+import { Instagram } from "lucide-react"
+import { Mail } from "lucide-react"
+import Image from "next/image"
+import LogoEuquefiz from "@/public/euquefiz.png"
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 80)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Função para scroll suave até a seção
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const headerOffset = 80 // Ajuste para altura do header
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      })
-    }
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.scrollIntoView({ behavior: "smooth", block: "start" })
   }
 
   return (
@@ -89,21 +84,19 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
               onClick={() => scrollToSection("catalogo")}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 hover:scale-105 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold shadow-lg hover:shadow-primary/30 transition-all"
             >
               Explorar Coleção
-              <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+              <ChevronDown className="w-5 h-5" />
             </motion.button>
 
             <motion.button
               onClick={() => scrollToSection("sobre")}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-primary/20 text-foreground font-semibold hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-primary/20 font-semibold hover:bg-primary/5 transition-all"
             >
               <Sparkles className="w-5 h-5" />
               Nossa História
@@ -212,48 +205,68 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {products.map((product, index) => (
-              <motion.div
+              <div
                 key={product.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
                 className="relative"
               >
                 <ProductCard
                   product={product}
                   onViewDetails={() => setSelectedProduct(product)}
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Catalog Stats */}
+
+
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-20 pt-12 border-t border-border/50"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+
               <div>
                 <div className="text-4xl font-bold text-primary mb-2">100%</div>
                 <div className="text-sm text-muted-foreground">Feito à mão</div>
               </div>
+
               <div>
                 <div className="text-4xl font-bold text-primary mb-2">24/7</div>
                 <div className="text-sm text-muted-foreground">Suporte</div>
               </div>
+
               <div>
                 <div className="text-4xl font-bold text-primary mb-2">500+</div>
                 <div className="text-sm text-muted-foreground">Clientes satisfeitos</div>
               </div>
+
+              {/* ⭐ Avaliação */}
               <div>
-                <div className="text-4xl font-bold text-primary mb-2">⭐ 4.9</div>
-                <div className="text-sm text-muted-foreground">Avaliação média</div>
+                <div className="flex flex-col items-center gap-4 mb-2">
+                  <span className="text-lg font-bold text-primary">Avaliação média</span>
+
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-5 h-5 fill-primary text-primary"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="text-sm text-muted-foreground">
+                  {/* Avaliação média */}
+                </div>
               </div>
+
             </div>
           </motion.div>
+
         </div>
       </section>
 
@@ -275,12 +288,12 @@ export default function Home() {
               Entre em contato pelo WhatsApp para tirar dúvidas, personalizar sua sandália ou fazer seu pedido.
             </p>
             <a
-              href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre as sandálias."
+              href="https://wa.me/5519997785025?text=Olá, Dani! Gostaria de saber mais sobre as sandálias."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold hover:shadow-xl hover:shadow-green-500/30 transition-all duration-300 hover:scale-105"
             >
-              <FaWhatsapp className="h-6 w-6"/>
+              <FaWhatsapp className="h-6 w-6" />
               Falar no WhatsApp
             </a>
           </motion.div>
@@ -289,115 +302,83 @@ export default function Home() {
 
       {/* About Section */}
       <section id="sobre" className="py-20 bg-gradient-to-b from-card to-background scroll-mt-20 overflow-hidden">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-      {/* Coluna do Texto */}
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        className="relative"
-      >
-        <span className="inline-block text-sm font-semibold text-primary mb-3 tracking-wider uppercase">
-          Nossa História
-        </span>
-        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 lg:mb-8">
-          Sobre a <span className="text-primary">euquefiz</span>
-        </h2>
-        <div className="space-y-4 lg:space-y-6 text-base lg:text-lg text-muted-foreground">
-          <p className="leading-relaxed">
-            A <span className="font-semibold text-foreground">euquefiz</span> nasceu da fusão entre amor pelo artesanato tradicional e
-            o desejo de criar moda sustentável e significativa.
-          </p>
-          <p className="leading-relaxed">
-            Cada sandália conta uma história, desde a escolha dos materiais até o acabamento final.
-          </p>
-          <p className="leading-relaxed">
-            Nossa missão é oferecer mais do que calçados - oferecemos expressão pessoal,
-            conforto genuíno e conexão com técnicas artesanais que passam de geração em geração.
-          </p>
-        </div>
-        
-        <div className="mt-6 lg:mt-8 pt-6 lg:pt-8 border-t border-border/50">
-          <div className="flex items-center gap-2 text-foreground font-semibold">
-            <Star className="w-5 h-5 text-primary flex-shrink-0" />
-            <span className="text-sm lg:text-base">Materiais sustentáveis e duráveis</span>
-          </div>
-          <div className="flex items-center gap-2 text-foreground font-semibold mt-3">
-            <Heart className="w-5 h-5 text-primary flex-shrink-0" />
-            <span className="text-sm lg:text-base">Produção ética e responsável</span>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Coluna da Imagem - com container seguro */}
-      <motion.div
-        initial={{ opacity: 0, x: 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        className="relative lg:pl-8 xl:pl-12"
-      >
-        <div className="relative">
-          {/* Container principal com overflow hidden */}
-          <div className="relative aspect-square rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20" />
-            
-            {/* Conteúdo centralizado */}
-            <div className="relative w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full bg-primary/10 flex items-center justify-center mb-4 sm:mb-6">
-                <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-primary" />
-              </div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2 sm:mb-3 md:mb-4 text-center">
-                Artesanato com Alma
-              </h3>
-              <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center max-w-xs sm:max-w-sm">
-                Cada detalhe importa, cada linha conta uma história.
-              </p>
-            </div>
-          </div>
-
-          {/* Elementos de background - DENTRO do container relativo */}
-          <div className="absolute -bottom-4 -left-4 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-accent/5 rounded-full blur-xl -z-10" />
-          <div className="absolute -top-4 -right-4 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-primary/5 rounded-full blur-xl -z-10" />
-        </div>
-      </motion.div>
-    </div>
-  </div>
-</section>
-
-      {/* Footer */}
-      <footer className="pt-16 pb-8 border-t border-border/50 w-full ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div>
-              <h3 className="font-serif text-2xl font-bold text-foreground mb-4">euquefiz</h3>
-              <p className="text-muted-foreground">
-                Sandálias artesanais feitas com amor e dedicação.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Links Rápidos</h4>
-              <ul className="space-y-2">
-                <li><button onClick={() => scrollToSection("catalogo")} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Coleção</button></li>
-                <li><button onClick={() => scrollToSection("sobre")} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Sobre</button></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-4">Contato</h4>
-              <p className="text-muted-foreground">
-                Disponível via WhatsApp para dúvidas e pedidos.
-              </p>
-            </div>
-          </div>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Coluna do Texto */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <span className="inline-block text-sm font-semibold text-primary mb-3 tracking-wider uppercase">
+                Nossa História
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 lg:mb-8">
+                Sobre a <span className="text-primary">euquefiz</span>
+              </h2>
+              <div className="space-y-4 lg:space-y-6 text-base lg:text-lg text-muted-foreground">
+                <p className="leading-relaxed">
+                  A <span className="font-semibold text-foreground">euquefiz</span> nasceu da fusão entre amor pelo artesanato tradicional e
+                  o desejo de criar moda sustentável e significativa.
+                </p>
+                <p className="leading-relaxed">
+                  Cada sandália conta uma história, desde a escolha dos materiais até o acabamento final.
+                </p>
+                <p className="leading-relaxed">
+                  Nossa missão é oferecer mais do que calçados - oferecemos expressão pessoal,
+                  conforto genuíno e conexão com técnicas artesanais que passam de geração em geração.
+                </p>
+              </div>
 
-          <div className="pt-8 border-t border-border/30 text-center">
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} euquefiz. Todos os direitos reservados.
-            </p>
+              <div className="mt-6 lg:mt-8 pt-6 lg:pt-8 border-t border-border/50">
+                <div className="flex items-center gap-2 text-foreground font-semibold">
+                  <Star className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-sm lg:text-base">Materiais sustentáveis e duráveis</span>
+                </div>
+                <div className="flex items-center gap-2 text-foreground font-semibold mt-3">
+                  <Heart className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-sm lg:text-base">Produção ética e responsável</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Coluna da Imagem - com container seguro */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative lg:pl-8 xl:pl-12"
+            >
+              <div className="relative">
+                {/* Container principal com overflow hidden */}
+                <div className="relative aspect-square rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20" />
+
+                  {/* Conteúdo centralizado */}
+                  <div className="relative w-full h-full flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full bg-primary/10 flex items-center justify-center mb-4 sm:mb-6">
+                      <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-primary" />
+                    </div>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2 sm:mb-3 md:mb-4 text-center">
+                      Artesanato com Alma
+                    </h3>
+                    <p className="text-sm sm:text-base md:text-lg text-muted-foreground text-center max-w-xs sm:max-w-sm">
+                      Cada detalhe importa, cada linha conta uma história.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Elementos de background - DENTRO do container relativo */}
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-accent/5 rounded-full blur-xl -z-10" />
+                <div className="absolute -top-4 -right-4 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-primary/5 rounded-full blur-xl -z-10" />
+              </div>
+            </motion.div>
           </div>
         </div>
-      </footer>
+      </section>
 
+      
       {/* Product Modal */}
       <AnimatePresence>
         {selectedProduct && (
@@ -421,6 +402,95 @@ export default function Home() {
           <ChevronRight className="w-5 h-5 rotate-270" />
         </motion.button>
       )}
+
+      {/* Footer */}
+      <footer className="pt-16 pb-8 border-t border-border/50 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Conteúdo principal */}
+          <div className="grid gap-10 md:grid-cols-3 mb-12">
+
+            {/* Logo + descrição */}
+            <div>
+              <Image
+                src={LogoEuquefiz}
+                alt="Euquefiz"
+                width={40}
+                height={40}
+                className="mb-4"
+                priority={false}
+              />
+
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+                Produtos feitos com amor, carinho e muita dedicação.
+              </p>
+            </div>
+
+            {/* Links rápidos */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">
+                Links rápidos
+              </h4>
+              <ul className="space-y-2">
+                <li>
+                  <button
+                    onClick={() => scrollToSection("catalogo")}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Coleção
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollToSection("sobre")}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Sobre
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contato */}
+            <div>
+              <h4 className="font-semibold text-foreground mb-4">
+                Contato
+              </h4>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Phone className="h-4 w-4 text-primary" />
+                  <a
+                    href="tel:+5519997785025"
+                    className="hover:text-primary transition-colors"
+                  >
+                    (19) 99778-5025
+                  </a>
+
+                </li>
+                <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Mail className="h-4 w-4 text-primary" />
+                  <span>dani.franca002@gmail.com</span>
+                </li>
+                <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Instagram className="h-4 w-4 text-primary" />
+                  <span>@euquefiz_bydani</span>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          {/* Linha inferior */}
+          <div className="pt-8 border-t border-border/30 text-center">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} euquefiz. Todos os direitos reservados.
+            </p>
+          </div>
+
+        </div>
+      </footer>
     </div>
+
+    
   )
 }

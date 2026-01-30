@@ -56,9 +56,8 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
   }. Poderia me ajudar?`
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+    <div 
+
       className="group relative bg-card rounded-3xl overflow-hidden border border-border/50 hover:border-primary/30 shadow-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500"
     >
       {/* Like button */}
@@ -165,8 +164,8 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
                 className={cn(
                   "group relative w-11 h-11 rounded-full border-3 transition-all duration-300 hover:scale-110 hover:shadow-lg",
                   selectedColor.name === color.name
-                    ? "border-primary ring-3 ring-primary/20 scale-110 shadow-lg"
-                    : "border-background hover:border-primary/50"
+                    ? "border ring-3 ring-primary/20 scale-110 shadow-lg"
+                    : "border hover:border-primary/50"
                 )}
                 style={{ backgroundColor: color.hex }}
                 title={color.name}
@@ -259,6 +258,6 @@ export function ProductCard({ product, onViewDetails }: ProductCardProps) {
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
