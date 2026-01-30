@@ -15,6 +15,7 @@ import { Instagram } from "lucide-react"
 import { Mail } from "lucide-react"
 import Image from "next/image"
 import LogoEuquefiz from "@/public/euquefiz.png"
+import { HeroGeometric } from "@/components/ui/shape-landing-hero"
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null)
@@ -43,124 +44,181 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden min-h-[100vh] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full"
-        >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 text-primary text-base font-semibold mb-8 border border-primary/20"
-          >
-            <Sparkles className="w-4 h-4" />
-            Feito à mão com amor
-          </motion.span>
+ <section className="relative min-h-[100vh] w-full overflow-hidden flex items-center">
+  {/* Background: HeroGeometric Component */}
+  <div className="absolute inset-0 z-0">
+    <HeroGeometric 
+      badge=""
+      title1=""
+      title2=""
+    />
+  </div>
 
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 leading-tight">
-            <span className="block">Sandálias que</span>
-            <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                contam histórias
-              </span>
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 to-accent/50 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ delay: 0.5, duration: 1 }}
-              />
-            </span>
-          </h1>
+  {/* Overlay escuro suave para legibilidade */}
+  <div className="absolute inset-0 z-10 bg-gradient-to-b from-background/30 via-background/40 to-background/60" />
+  
+  {/* Conteúdo do seu hero section */}
+  <div className="relative z-20 w-full">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full"
+    >
+      {/* Seu badge */}
+      <motion.span
+        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="
+          group relative inline-flex items-center gap-2
+          px-6 py-3
+          rounded-full
+          bg-gradient-to-r
+          from-primary/15
+          via-accent/10
+          to-primary/15
+          backdrop-blur-md
+          border border-primary/20
+          text-primary
+          text-sm sm:text-base
+          font-semibold
+          shadow-lg shadow-primary/10
+          overflow-hidden
+          mb-8
+        "
+      >
+        {/* glow animado */}
+        <span className="
+          pointer-events-none
+          absolute inset-0
+          rounded-full
+          bg-gradient-to-r
+          from-primary/30
+          via-accent/20
+          to-primary/30
+          opacity-0
+          blur-xl
+          transition-opacity duration-500
+          group-hover:opacity-40
+        " />
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-            Cada peça é uma obra de arte única, cuidadosamente confeccionada à mão para celebrar sua individualidade.
-            Conforto, estilo e autenticidade em cada passo da sua jornada.
-          </p>
+        {/* ícone */}
+        <Sparkles className="relative z-10 w-4 h-4 animate-pulse" />
 
-<div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-  <motion.button
-    type="button"
-    onClick={() => scrollToSection("catalogo")}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.96 }}
-    className="
-      inline-flex
-      w-full sm:w-auto
-      items-center
-      justify-center
-      gap-3
-      px-8
-      py-4
-      rounded-full
-      bg-gradient-to-r
-      from-primary
-      to-accent
-      text-white
-      font-semibold
-      shadow-lg
-      hover:shadow-primary/30
-      transition-all
-      cursor-pointer
-      pointer-events-auto
-    "
-  >
-    <span className="flex items-center gap-3 pointer-events-none">
-      Explorar Coleção
-      <ChevronDown className="w-5 h-5" />
-    </span>
-  </motion.button>
+        {/* texto */}
+        <span className="relative z-10 tracking-wide">
+          Feito à mão com amor
+        </span>
+      </motion.span>
 
-  <motion.button
-    type="button"
-    onClick={() => scrollToSection("sobre")}
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.96 }}
-    className="
-      inline-flex
-      w-full sm:w-auto
-      items-center
-      justify-center
-      gap-3
-      px-8
-      py-4
-      rounded-full
-      border-2
-      border-primary/20
-      font-semibold
-      hover:bg-primary/5
-      transition-all
-      cursor-pointer
-      pointer-events-auto
-    "
-  >
-    <span className="flex items-center gap-3 pointer-events-none">
-      Nossa História
-      <Sparkles className="w-5 h-5" />
-    </span>
-  </motion.button>
-</div>
+      {/* Títulos */}
+      <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-foreground mb-8 leading-tight">
+        <span className="block">Sandálias que</span>
+        <span className="relative">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+            contam histórias
+          </span>
+          <motion.div
+            className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 to-accent/50 rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{ delay: 0.5, duration: 1 }}
+          />
+        </span>
+      </h1>
 
-        </motion.div>
+      {/* Descrição */}
+      <p className="text-lg md:text-xl text-foreground/90 max-w-3xl mx-auto mb-12 leading-relaxed font-light bg-background/30 backdrop-blur-sm py-4 px-6 rounded-2xl">
+        Cada peça é uma obra de arte única, cuidadosamente confeccionada à mão para celebrar sua individualidade.
+        Conforto, estilo e autenticidade em cada passo da sua jornada.
+      </p>
 
-        {/* Floating Elements */}
-        <div className="absolute top-1/4 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000" />
-
-        {/* Scroll indicator */}
+      {/* Botões */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
         <motion.button
+          type="button"
           onClick={() => scrollToSection("catalogo")}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.96 }}
+          className="
+            inline-flex
+            w-full sm:w-auto
+            items-center
+            justify-center
+            gap-3
+            px-8
+            py-4
+            rounded-full
+            bg-gradient-to-r
+            from-primary
+            to-accent
+            text-white
+            font-semibold
+            shadow-lg
+            hover:shadow-primary/30
+            transition-all
+            cursor-pointer
+            pointer-events-auto
+            backdrop-blur-sm
+          "
         >
-          <ChevronDown className="w-6 h-6 text-primary" />
+          <span className="flex items-center gap-3 pointer-events-none">
+            Explorar Coleção
+            <ChevronDown className="w-5 h-5" />
+          </span>
         </motion.button>
-      </section>
+
+        <motion.button
+          type="button"
+          onClick={() => scrollToSection("sobre")}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.96 }}
+          className="
+            inline-flex
+            w-full sm:w-auto
+            items-center
+            justify-center
+            gap-3
+            px-8
+            py-4
+            rounded-full
+            bg-white/90
+            backdrop-blur-md
+            border-2
+            border-primary/20
+            font-semibold
+            hover:bg-primary/5
+            transition-all
+            cursor-pointer
+            pointer-events-auto
+            shadow-lg
+          "
+        >
+          <span className="flex items-center gap-3 pointer-events-none">
+            Nossa História
+            <Sparkles className="w-5 h-5" />
+          </span>
+        </motion.button>
+      </div>
+    </motion.div>
+
+    {/* Scroll indicator */}
+    {/* <motion.button
+      onClick={() => scrollToSection("catalogo")}
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1 }}
+    >
+      <ChevronDown className="w-6 h-6 text-primary bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-lg" />
+    </motion.button> */}
+  </div>
+
+  {/* Seus elementos flutuantes originais (opcionais, já tem no HeroGeometric) */}
+  <div className="absolute top-1/4 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse z-0" />
+  <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000 z-0" />
+</section>
 
       {/* Features */}
       <section className="py-16 relative overflow-hidden">
@@ -434,16 +492,16 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Scroll to top */}
-      {isScrolled && (
+      {/* {isScrolled && (
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-24 right-6 w-12 h-12 rounded-full bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center z-40 cursor-pointer"
+          className="fixed bottom-12 right-146 w-12 h-12 rounded-full bg-primary text-white shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center z-40 cursor-pointer"
         >
           <ChevronRight className="w-5 h-5 rotate-270" />
         </motion.button>
-      )}
+      )} */}
 
       {/* Footer */}
       <footer className="pt-16 pb-8 border-t border-border/50 w-full">
