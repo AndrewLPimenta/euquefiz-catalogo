@@ -42,7 +42,7 @@ export function Header() {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <img
-            src="/euquefiz.svg"
+            src="/euquefiz.png"
             alt="euquefiz"
             className="h-10 md:h-10 object-contain"
           />

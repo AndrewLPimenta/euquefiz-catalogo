@@ -14,7 +14,7 @@ import { Phone } from "lucide-react"
 import { Instagram } from "lucide-react"
 import { Mail } from "lucide-react"
 import Image from "next/image"
-import LogoEuquefiz from "@/public/euquefiz.svg"
+import LogoEuquefiz from "@/public/euquefiz.png"
 import { HeroGeometric } from "@/components/ui/shape-landing-hero"
 
 export default function Home() {
