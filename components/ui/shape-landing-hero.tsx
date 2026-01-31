@@ -116,14 +116,14 @@ function HeroGeometric() {
 
             <div className="relative z-10 container mx-auto px-4 md:px-6">
                 <div className="max-w-3xl mx-auto text-center">
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/[0.03] border border-rose-500/[0.15] mb-8 md:mb-12"
                     >
-                        <Circle className="h-2 w-2 fill-rose-500" />
-                    </motion.div>
+
+                    </motion.div> */}
 
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}

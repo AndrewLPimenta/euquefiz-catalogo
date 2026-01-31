@@ -84,8 +84,8 @@ export function Header() {
     justify-center
     rounded-full
     bg-gradient-to-br
-    from-pink-500/10
-    via-rose-500/15
+    from-black-500/10
+    via-white-500/15
     to-purple-500/20
     backdrop-blur-xl
     border
@@ -121,7 +121,7 @@ export function Header() {
     z-10
     h-7
     w-7
-    text-pink-500
+    text-gray-700
     drop-shadow-sm
     transition-all
     duration-500
