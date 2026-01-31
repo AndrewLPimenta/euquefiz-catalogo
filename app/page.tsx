@@ -14,7 +14,7 @@ import { Phone } from "lucide-react"
 import { Instagram } from "lucide-react"
 import { Mail } from "lucide-react"
 import Image from "next/image"
-import LogoEuquefiz from "@/public/euquefiz.png"
+import LogoEuquefiz from "@/public/euquefiz.svg"
 import { HeroGeometric } from "@/components/ui/shape-landing-hero"
 
 export default function Home() {
@@ -131,7 +131,6 @@ export default function Home() {
       {/* Descrição */}
       <p className="text-lg md:text-xl text-foreground/90 max-w-3xl mx-auto mb-12 leading-relaxed font-light bg-background/30 backdrop-blur-sm py-4 px-6 rounded-2xl">
         Cada peça é uma obra de arte única, cuidadosamente confeccionada à mão para celebrar sua individualidade.
-        Conforto, estilo e autenticidade em cada passo da sua jornada.
       </p>
 
       {/* Botões */}
